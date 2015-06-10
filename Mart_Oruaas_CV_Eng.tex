@@ -20,6 +20,9 @@
 
 \documentclass{scrartcl}
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
 \reversemarginpar % Move the margin to the left of the page 
 
 \newcommand{\MarginText}[1]{\marginpar{\raggedleft\itshape\small#1}} % New command defining the margin text style
@@ -39,6 +42,9 @@
 
 \newcommand{\Description}[1]{\hangindent=2em\hangafter=0\noindent\raggedright\footnotesize{#1}\par\normalsize\vspace{1em}} % Define a command for descriptions of each entry - change spacing and font sizes here
 
+\usepackage[estonian]{babel}
+\usepackage{iflang}
+
 %----------------------------------------------------------------------------------------
 
 \begin{document}
@@ -51,9 +57,9 @@
 
 \begin{cv}{\spacedallcaps{Mart Oruaas}}\vspace{1.5em} % Your name
 
-\noindent\spacedlowsmallcaps{Personal Information}\vspace{0.5em} % Personal information heading
+\noindent\spacedlowsmallcaps{\IfLanguageName{estonian}{Kontaktandmed}{Personal Information}}\vspace{0.5em} % Personal information heading
 
-\NewEntry{}{\textit{Born in Estonia,}}{16 November 1976} % Birthplace and date
+\NewEntry{}{\IfLanguageName{estonian}{Sündinud 16.novembril 1976}{\textit{Born in Estonia,}{16 November 1976}}} % Birthplace and date
 
 \NewEntry{email}{\href{mailto:mart.oruaas@gmail.com}{mart.oruaas@gmail.com}} % Email address
 
@@ -112,8 +118,23 @@
 
 %------------------------------------------------
 
-\vspace{1em} % Extra space between major sections
 
+%----------------------------------------------------------------------------------------
+%	COMPUTER SKILLS
+%----------------------------------------------------------------------------------------
+
+\spacedlowsmallcaps{Professional Skills}\vspace{1em}
+
+\Description{\MarginText{Distributed systems}Protocol design, reliability, performance and security of distributed systems.}
+
+\Description{\MarginText{Information security}Practical experience in implementing security protocols and hardening application software.}
+
+\Description{\MarginText{Programming languages}C, C++, Java, Scala, Ruby, Python, SQL (including its procedural variants), JavaScript.}
+
+
+%------------------------------------------------
+
+\vspace{1em} % Extra space between major sections
 
 %----------------------------------------------------------------------------------------
 %	WORK EXPERIENCE
@@ -204,7 +225,7 @@
 
 \NewEntry{December 2003}{Security Analysis of Proposed E-voting System}
 
-\Description{\MarginText{Eesti Vabariigi Valimiskomisjon}E-hletamise kontseptsiooni turve: analüüs ja meetmed, EH-02-01.\\ Authors: Arne Ansper, Ahto Buldas, Mart Oruaas, Jaan Priisalu, Anto Veldre, Jan Willemson, Kaur Virunurm}
+\Description{\MarginText{Estonian National Electoral Committee}E-hääletamise kontseptsiooni turve: analüüs ja meetmed, EH-02-01.\\ Authors: Arne Ansper, Ahto Buldas, Mart Oruaas, Jaan Priisalu, Anto Veldre, Jan Willemson, Kaur Virunurm}
 
 %------------------------------------------------
 
@@ -216,21 +237,7 @@
 
 \vspace{1em} % Extra space between major sections
 
-%----------------------------------------------------------------------------------------
-%	COMPUTER SKILLS
-%----------------------------------------------------------------------------------------
 
-%\spacedlowsmallcaps{Computer Skills}\vspace{1em}
-
-%\Description{\MarginText{Basic}\textsc{java}, Adobe Illustrator}
-
-%\Description{\MarginText{Intermediate}\textsc{python}, \textsc{html}, \LaTeX, OpenOffice, Linux, Microsoft Windows}
-
-%\Description{\MarginText{Advanced}Computer Hardware and Support}
-
-%------------------------------------------------
-
-\vspace{1em} % Extra space between major sections
 
 %----------------------------------------------------------------------------------------
 %	OTHER INFORMATION
