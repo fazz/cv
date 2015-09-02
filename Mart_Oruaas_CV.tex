@@ -45,6 +45,8 @@
 \usepackage[estonian]{babel}
 \usepackage{iflang}
 
+\newcommand{\ifet}[2]{\IfLanguageName{estonian}{#1}{#2}}
+
 %----------------------------------------------------------------------------------------
 
 \begin{document}
@@ -57,15 +59,15 @@
 
 \begin{cv}{\spacedallcaps{Mart Oruaas}}\vspace{1.5em} % Your name
 
-\noindent\spacedlowsmallcaps{\IfLanguageName{estonian}{Kontaktandmed}{Personal Information}}\vspace{0.5em} % Personal information heading
+\noindent\spacedlowsmallcaps{\ifet{Kontaktandmed}{Personal Information}}\vspace{0.5em} % Personal information heading
 
-\NewEntry{}{\IfLanguageName{estonian}{Sündinud 16.novembril 1976}{\textit{Born in Estonia,}{16 November 1976}}} % Birthplace and date
+\NewEntry{}{\ifet{Sündinud 16.novembril 1976}{\textit{Born in Estonia,}{16 November 1976}}} % Birthplace and date
 
-\NewEntry{email}{\href{mailto:mart.oruaas@gmail.com}{mart.oruaas@gmail.com}} % Email address
+\NewEntry{\ifet{e-post}{e-mail}}{\href{mailto:mart.oruaas@gmail.com}{mart.oruaas@gmail.com}} % Email address
 
 %\NewEntry{website}{\href{http://www.johnsmith.com}{http://www.johnsmith.com}} % Personal website
 
-\NewEntry{phone}{(M) +372 5100227} % \ \ $\cdotp$\ \ (M) +1 (000) 111 1112} % Phone number(s)
+\NewEntry{\ifet{telefon}{phone}}{(M) +372 5100227} % \ \ $\cdotp$\ \ (M) +1 (000) 111 1112} % Phone number(s)
 
 \vspace{1em} % Extra white space between the personal information section and goal
 
@@ -77,11 +79,11 @@
 %	EDUCATION
 %----------------------------------------------------------------------------------------
 
-\noindent\spacedlowsmallcaps{Education}\vspace{1em}
+\noindent\spacedlowsmallcaps{\ifet{Haridus}{Education}}\vspace{1em}
 
-\NewEntry{1995-2001}{Tallinn Technical University}
+\NewEntry{1995-2001}{\ifet{Tallinna Tehnikaülikool}{Tallinn Technical University}}
 
-\Description{\MarginText{Bachelor of Science} Informatics\newline 
+\Description{\MarginText{\ifet{Tehnikateaduste bakalaureus}{Bachelor of Science}} \ifet{Informaatika}{Informatics}\newline 
 }
 
 %------------------------------------------------
@@ -123,13 +125,15 @@
 %	COMPUTER SKILLS
 %----------------------------------------------------------------------------------------
 
-\spacedlowsmallcaps{Professional Skills}\vspace{1em}
+\spacedlowsmallcaps{\ifet{Erialased oskused}{Professional Skills}}\vspace{1em}
 
-\Description{\MarginText{Distributed systems}Protocol design, reliability, performance and security of distributed systems.}
+\newcommand{\skills}[4]{\Description{\MarginText{\ifet{#1}{#3}}\ifet{#2}{#4}}}
 
-\Description{\MarginText{Information security}Practical experience in implementing security protocols and hardening application software.}
+\skills{Hajussüsteemid}{Protokollide disain, hajussüsteemide töökindlus, jõudlus ja turvalisus.}{Distributed systems}{Protocol design, reliability, performance and security of distributed systems.}
 
-\Description{\MarginText{Programming languages}C, C++, Java, Scala, Ruby, Python, SQL (including its procedural variants), JavaScript.}
+\skills{Andmeturve}{Praktiline kogemus turvaprotokollide realiseerimisel ning rakendustarkvara turvataseme kindlustamisel.}{Information security}{Practical experience in implementing security protocols and hardening application software.}
+
+\skills{Programmeerimiskeeled}{C, C++, Java, Scala, Ruby, Python, SQL, JavaScript.}{Programming languages}{C, C++, Java, Scala, Ruby, Python, SQL (including its procedural variants), JavaScript.}
 
 
 %------------------------------------------------
@@ -140,30 +144,31 @@
 %	WORK EXPERIENCE
 %----------------------------------------------------------------------------------------
 
-\noindent\spacedlowsmallcaps{Work Experience}\vspace{1em}
+\newcommand{\competencies}[2]{\ifet{Kompetents}{Competencies}: \textit{\ifet{#1}{#2}}}
+
+\noindent\spacedlowsmallcaps{\ifet{T{\"o}{\"o}kogemus}{Work Experience}}\vspace{1em}
 
 %------------------------------------------------
 
-\NewEntry{2014--Preset}{Software Engineer, \textsc{Cybernetica}  --- Tallinn}
+\NewEntry{2014--Present}{\ifet{Tarkvarainsener}{Software Engineer}, \textsc{Cybernetica}  --- Tallinn}
 
-\Description{\MarginText{Cybernetica AS}Working on information security related software projects.\newline
-	Competencies: \textit{C++, Java, Python, distributed and concurrent programming, algorithm and protocol design}
+\Description{\MarginText{Cybernetica AS}\ifet{Mitmesugused andmeturbe-alased arendusprojektid.}{Working on information security related software projects.}\newline
+	\competencies{C++, Java, Python, hajussüsteemide arendus}{C++, Java, Python, distributed and concurrent programming, algorithm and protocol design}
 	
 }
 
-\NewEntry{2013--2014}{Freelance software engineer}
+\NewEntry{2013--2014}{\ifet{Vabakutseline tarkvaraarendaja}{Freelance software engineer}}
 
-\Description{\MarginText{}Worked as software developer for several early-stage startups.\newline
-	Competencies: \textit{C++, Python, algorithm design}
-	
+\Description{\MarginText{}\ifet{Spetsiifilised allhanketööd mitmele startup-firmale.}{Worked as software developer for several early-stage startups.}\newline
+	\competencies{C++, Python, algoritmide disain}{C++, Python, algorithm design}
 }
 
 %------------------------------------------------
 
-\NewEntry{2012--2013}{Software Architect, \textsc{GrabCAD}  --- Tallinn}
+\NewEntry{2012--2013}{\ifet{Tarkvaraarhitekt}{Software Architect}, \textsc{GrabCAD}  --- Tallinn}
 
-\Description{\MarginText{GrabCAD}Software Architect in GrabCAD Tallinn development office. Responsible for structuring, scaling and securing GrabCAD backend services.\newline
-	Competencies: \textit{Web application development, scaling and securing. Working with large deployments on cloud infrastructure. Running a team in DevOps mode.}
+\Description{\MarginText{GrabCAD}\ifet{Tarkvaraarhitekt GrabCADi Tallinna arenduskontoris. Vastutav grabcad.com teenusserverite tarkvaraarhitektuuri, skaleeruvuse ja turvalisuse eest.}{Software Architect in GrabCAD Tallinn development office. Responsible for structuring, scaling and securing GrabCAD backend services.}\newline
+	\competencies{Veebiteenuste arendus, skaleerimine ja turvalisus. Mastaapsete rakenduste haldamine pilveteenuse pakkuja keskkonnas. Arendusmeeskonna juhtumine DevOps praktikate alusel.}{Web application development, scaling and securing. Working with large deployments on cloud infrastructure. Running a team in DevOps mode.}
 	
 }
 
@@ -171,9 +176,10 @@
 
 \NewEntry{2008--2012}{Senior Core Library Developer, \textsc{Skype}  --- Tallinn}
 
-\Description{\MarginText{Skype Engineering Ltd.}Architect and developer of Skype Core Library, the cross-platform C++ runtime that implements most of functionality found in Skype clients. Responsibility areas included low-level networking and P2P media and signalling transport protocols. Took part of design and implementation of  transport layer for Group Video Calling feature.
-	For the last three months I was employed as Principal Software Development Engineer in Microsoft Corporation.\newline
-		Competencies: \textit{C++, Python, IP networking, distributed and concurrent programming, semi-realtime software systems, algorithm design}
+\Description{\MarginText{Skype Engineering Ltd.}\ifet{Skype Core Library ehk Skype tuumiteenuste C++ teegi arhitekt ja arendaja. Tegelesin madala taseme klient-server ning P2P protokollidega, s.h. kõne ja video voogedastuse protokollidega.
+		Viimased kolm kuud sellest ajast olin Microsoft Corporationi Principal Software Development Engineer.}{Architect and developer of Skype Core Library, the cross-platform C++ runtime that implements most of functionality found in Skype clients. Responsibility areas included low-level networking and P2P media and signalling transport protocols. Took part of design and implementation of  transport layer for Group Video Calling feature.
+		For the last three months I was employed as Principal Software Development Engineer in Microsoft Corporation.}\newline
+		\competencies{C++, Python, TCP/IP võrguprotokollid, hajus ning paralleelne programmeerimine, pehme reaalaja tarkvarasüsteemid, algoritmide ja protokollide disain}{C++, Python, IP networking, distributed and concurrent programming, semi-realtime software systems, algorithm and protocol design}
 	
 	
 }
@@ -183,28 +189,27 @@
 
 \NewEntry{2005--2008}{Senior Backend Developer, \textsc{Skype}  --- Tallinn}
 
-\Description{\MarginText{Skype Engineering Ltd.}Architect and developer of several Skype serverside components, including the ones responsible for call signalling and media transport. Majority of the work involved writing and maintaining large C++ codebases and supporting operational staff in maintaining applications built from those codebases.\newline
-	Competencies: \textit{C++, Python, IP networking, distributed and concurrent programming, protocol design}
+\Description{\MarginText{Skype Engineering Ltd.}\ifet{Skype keskteenuste arhitekt ja arendaja. Tegelesin põhiliselt kõnehalduse ning kõne voogedastuse komponentidega. Põhiosa tööst seisnes suure koodimahu ning kõrgete jõudlus- ja käideldavusnõuetega C++ rakenduste loomises ning nende opereerimise toetamises.}{Architect and developer of several Skype serverside components, including the ones responsible for call signalling and media transport. Majority of the work involved writing and maintaining large C++ codebases and supporting operational staff in maintaining applications built from those codebases.}\newline
+		\competencies{C++, Python, TCP/IP võrguprotokollid, hajus ning paralleelne programmeerimine, pehme reaalaja tarkvarasüsteemid, algoritmide ja protokollide disain}{C++, Python, IP networking, distributed and concurrent programming, semi-realtime software systems, algorithm and protocol design}
+			
+}
+
+%------------------------------------------------
+
+\NewEntry{1998--2005}{\ifet{Süsteemiinsener}{Computer Engineer}, \textsc{Pankade Kaardikeskus}  --- Tallinn}
+
+\Description{\MarginText{Pankade Kaardikeskuse AS}\ifet{Erinevad ametikohustused UNIXi serveri administraatorist kaardimakseprotokollide disainimise ja standardiseerimiseni. Firma tänane nimi on Nets Estonia.}{Evolved from network manager to lead software engineer over time and got involved in nation-wide payment network redesign efforts. This company is today known as Nets Estonia.}\newline
+	\competencies{UNIX/Linux, C/C++, Java, Windows, protokollide disain, andmeturve}{UNIX/Linux, C/C++, Java, Windows, protocol design, standard development, data security}
 	
 }
 
 %------------------------------------------------
 
-\NewEntry{1998--2005}{Computer Engineer, \textsc{Pankade Kaardikeskus}  --- Tallinn}
+\NewEntry{1992--1998}{\ifet{Arvutiinsener}{Computer Technician}, \textsc{Spin TEK}  --- Tallinn}
 
-\Description{\MarginText{Pankade Kaardikeskuse AS}Evolved from network manager to lead software engineer over time and got involved in nation-wide payment network redesign efforts. This company is today known as Nets Estonia.\newline
-	Competencies: \textit{UNIX/Linux, C/C++, Java, Windows, protocol design, standard development}
-	
+\Description{\MarginText{Spin TEK AS}\ifet{Arvutite remont, arvutivõrkude ehitus ja hooldus}{Part-time job, consisted mostly of computer and network repair and management.}\newline
+	\competencies{Windows, Linux, Novell Netware, IP ja IPX arvutivõrgud}{Windows, Linux, Novell Netware, IP and IPX networking}
 }
-
-%------------------------------------------------
-
-\NewEntry{1992--1998}{Computer Technician, \textsc{Spin TEK}  --- Tallinn}
-
-\Description{\MarginText{Spin TEK AS}Part-time job, consisted mostly of computer and network repair and management\newline
-	Competencies: \textit{Windows, Linux, Novell Netware, IP and IPX networking}
-}
-
 
 %------------------------------------------------
 
@@ -221,11 +226,11 @@
 %	PUBLICATIONS
 %----------------------------------------------------------------------------------------
 
-\spacedlowsmallcaps{Publications}\vspace{1em}
+\spacedlowsmallcaps{\ifet{Publikatsioonid}{Publications}}\vspace{1em}
 
-\NewEntry{December 2003}{Security Analysis of Proposed E-voting System}
+\NewEntry{\ifet{Detsember}{December} 2003}{\ifet{E-hääletamise turvaanalüüs}{Security Analysis of Proposed E-voting System}}
 
-\Description{\MarginText{Estonian National Electoral Committee}E-hääletamise kontseptsiooni turve: analüüs ja meetmed, EH-02-01.\\ Authors: Arne Ansper, Ahto Buldas, Mart Oruaas, Jaan Priisalu, Anto Veldre, Jan Willemson, Kaur Virunurm}
+\Description{\MarginText{\ifet{Vabariigi Valimiskomisjon}{Estonian National Electoral Committee}}E-hääletamise kontseptsiooni turve: analüüs ja meetmed, EH-02-01.\\ Authors: Arne Ansper, Ahto Buldas, Mart Oruaas, Jaan Priisalu, Anto Veldre, Jan Willemson, Kaur Virunurm}
 
 %------------------------------------------------
 
@@ -243,13 +248,13 @@
 %	OTHER INFORMATION
 %----------------------------------------------------------------------------------------
 
-\spacedlowsmallcaps{Other Information}\vspace{1em}
+\spacedlowsmallcaps{\ifet{Muu informatsioon}{Other Information}}\vspace{1em}
 
-\Description{\MarginText{Awards}2015\ \ $\cdotp$\ \ Amazing Newcomer award of Cybernetica AS }
+\Description{\MarginText{\ifet{Auhinnad}{Awards}}2015\ \ $\cdotp$\ \ \ifet{Aasta üllataja, Cybernetica AS}{Amazing Newcomer award of Cybernetica AS} }
 
 \vspace{-0.5em} % Negative vertical space to counteract the vertical space between every \Description command
 
-\Description{2005-2012\ \ $\cdotp$\ \ Multiple collegiate awards of Skype Technologies Ltd.}
+\Description{2005-2012\ \ $\cdotp$\ \ \ifet{Mitmed Skype sisemised auhinnad edukate projektide eest}{Multiple collegiate awards of Skype Technologies Ltd.}}
 
 
 %------------------------------------------------
@@ -269,21 +274,21 @@
 \newlength{\langbox} % Create a new length for the length of languages to keep them equally spaced
 \settowidth{\langbox}{English} % Length equals the length of "English" - if you have a longer language in your list put it here
 
-\Description{\MarginText{Languages}\parbox{\langbox}{\textsc{Estonian}}\ \ $\cdotp$\ \ \ Mothertongue}
+\Description{\MarginText{\ifet{Keeleoskus}{Languages}}\parbox{\langbox}{\textsc{\ifet{Eesti}{Estonian}}}\ \ $\cdotp$\ \ \ \ifet{Emakeel}{Mothertongue}}
 
 \vspace{-0.5em} % Negative vertical space to counteract the vertical space between every \Description command
 
-\Description{\parbox{\langbox}{\textsc{English}}\ \ $\cdotp$\ \ \ Fluent in everyday and professional use}
+\Description{\parbox{\langbox}{\textsc{\ifet{Inglise}{English}}}\ \ $\cdotp$\ \ \ \ifet{Väga hea}{Fluent in everyday and professional use}}
 
 \vspace{-0.5em} % Negative vertical space to counteract the vertical space between every \Description command
 
-\Description{\parbox{\langbox}{\textsc{Russian}}\ \ $\cdotp$\ \ \ Basic (everyday spoken use, simpler newspaper text)}
+\Description{\parbox{\langbox}{\textsc{\ifet{Vene}{Russian}}}\ \ $\cdotp$\ \ \ \ifet{Põhitase}{Basic (everyday spoken use, simpler newspaper text)}}
 
 \vspace{1em} % Negative vertical space to counteract the vertical space between every \Description command
 
 %------------------------------------------------
 
-\Description{\MarginText{Interests}Sailing\ \ $\cdotp$\ \ Running\ \ $\cdotp$\ \ Bicycling}
+\Description{\MarginText{\ifet{Huvid}{Interests}}\ifet{Purjetamine}{Sailing}\ \ $\cdotp$\ \ \ifet{Jooksmine}{Running}\ \ $\cdotp$\ \ \ifet{Jalgrattasõit}{Mountain biking}}
 
 %----------------------------------------------------------------------------------------
 
