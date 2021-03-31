@@ -22,6 +22,8 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{scrlayer-scrpage}
+\usepackage{lastpage}
 
 \reversemarginpar % Move the margin to the left of the page 
 
@@ -33,16 +35,16 @@
 \renewcommand{\cvheadingfont}{\LARGE\color{Maroon}} % Font color of your name at the top
 
 \usepackage{hyperref} % Required for adding links	and customizing them
-\hypersetup{colorlinks, breaklinks, urlcolor=Maroon, linkcolor=Maroon} % Set link colors
+\hypersetup{colorlinks, breaklinks, hidelinks, urlcolor=Maroon, linkcolor=Maroon} % Set link colors
 
 \newlength{\datebox}\settowidth{\datebox}{Spring 2011} % Set the width of the date box in each block
 
 \newcommand{\NewEntry}[3]{\noindent\hangindent=2em\hangafter=0 \parbox{\datebox}{\small \textit{#1}}\hspace{1.5em} #2 #3 % Define a command for each new block - change spacing and font sizes here: #1 is the left margin, #2 is the italic date field and #3 is the position/employer/location field
 \vspace{0.5em}} % Add some white space after each new entry
 
-\newcommand{\Description}[1]{\hangindent=2em\hangafter=0\noindent\raggedright\footnotesize{#1}\par\normalsize\vspace{1em}} % Define a command for descriptions of each entry - change spacing and font sizes here
+\newcommand{\Description}[1]{\hangindent=2em\hangafter=0\noindent\raggedright\footnotesize{#1}\par\normalsize\vspace{0.8em}} % Define a command for descriptions of each entry - change spacing and font sizes here
 
-\usepackage[estonian]{babel}
+\usepackage[english]{babel}
 \usepackage{iflang}
 
 \newcommand{\ifet}[2]{\IfLanguageName{estonian}{#1}{#2}}
@@ -51,7 +53,10 @@
 
 \begin{document}
 
-\thispagestyle{empty} % Stop the page count at the bottom of the first page
+\pagestyle{plain} % Stop the page count at the bottom of the first page
+%\KOMAoption{footinclude}{sdfsdfsdf}
+\rofoot[\thepage / \pageref{LastPage}]{\thepage}
+
 
 %----------------------------------------------------------------------------------------
 %	NAME AND CONTACT INFORMATION SECTION
@@ -129,16 +134,20 @@
 
 \newcommand{\skills}[4]{\Description{\MarginText{\ifet{#1}{#3}}\ifet{#2}{#4}}}
 
-\skills{Hajussüsteemid}{Protokollide disain, hajussüsteemide töökindlus, jõudlus ja turvalisus.}{Distributed systems}{Protocol design, reliability, performance and security of distributed systems.}
+\skills{Hajussüsteemid}{Protokollide disain, hajussüsteemide töökindlus, jõudlus ja turvalisus. Süsteemide formaalne spetsifitseerimine ja verifitseerimine.}{Distributed systems}{Protocol design, reliability, performance and security of distributed systems. Formal specification and verification of distributed software systems.}
 
-\skills{Andmeturve}{Praktiline kogemus turvaprotokollide realiseerimisel ning rakendustarkvara turvataseme kindlustamisel.}{Information security}{Practical experience in implementing security protocols and hardening application software.}
+\skills{Andmeturve}{Infosüsteemide formaalne turvaanalüüs. Turvaprotokollide disain ja realiseerimine. Tarkvaratehniliste meetmete rakendamine tarkvara ründekindluste tõstmiseks.}{Information security}{Formal security analysis of information systems. Design and implementation of security protocols. Software hardening through advanced methods in software engineering.}
 
-\skills{Programmeerimiskeeled}{C, C++, Java, Scala, Ruby, Python, SQL, JavaScript.}{Programming languages}{C, C++, Java, Scala, Ruby, Python, SQL (including its procedural variants), JavaScript.}
+\skills{Programmeerimiskeeled}{C, C++, Java, Scala, Ruby, Python, Rust, Go, SQL, JavaScript.}{Programming languages}{C, C++, Java, Scala, Ruby, Python, Rust, Go, SQL, JavaScript.}
+
+\vspace{1em} % Extra space between major sections
+
+\skills{Formaalsed spetsifitseerimiskeeled}{TLA+/PlusCal, Coq, Tamarin, ProVerif.}{Formal specification languages}{TLA+/PlusCal, Coq, Tamarin, ProVerif.}
 
 
 %------------------------------------------------
 
-\vspace{1em} % Extra space between major sections
+\vspace{2.0em} % Extra space between major sections
 
 %----------------------------------------------------------------------------------------
 %	WORK EXPERIENCE
@@ -150,10 +159,10 @@
 
 %------------------------------------------------
 
-\NewEntry{2014--Present}{\ifet{Tarkvarainsener}{Software Engineer}, \textsc{Cybernetica}  --- Tallinn}
+\NewEntry{2014--Present}{\ifet{Süsteemiarhitekt}{System Architect}, \textsc{Cybernetica AS}  --- Tallinn}
 
-\Description{\MarginText{Cybernetica AS}\ifet{Mitmesugused andmeturbe-alased arendusprojektid.}{Working on information security related software projects.}\newline
-	\competencies{C++, Java, Python, hajussüsteemide arendus}{C++, Java, Python, distributed and concurrent programming, algorithm and protocol design}
+\Description{\MarginText{Cybernetica AS}\ifet{Mitmesugused andmeturbe-alased arendusprojektid. Krüptograafiliste protokollide disain ja realiseerimine. Infosüsteemide turvaanalüüs. Rakendusuuringud krüptograafia ja infoturbe valdkonnast.}{Working on information security related software projects. Krüptograafiliste protokollide}\newline
+	\competencies{C++, Java, Python, hajussüsteemide arendus}{C++, Java, Python, distributed and concurrent programming, algorithm and protocol design. Cryptographic protocol design and implementation. Formal security analysis of information systems. Applied research in the fields of cryptography and information security.}
 	
 }
 
@@ -186,7 +195,7 @@
 % \\ Reference: Bill \textsc{Lumbergh}\ \ +1 (000) 111 1111\ \ $\cdotp$\ \ \href{mailto:bill@initech.com}{bill@initech.com}}
 
 %------------------------------------------------
-
+\pagebreak
 \NewEntry{2005--2008}{Senior Backend Developer, \textsc{Skype}  --- Tallinn}
 
 \Description{\MarginText{Skype Engineering Ltd.}\ifet{Skype keskteenuste arhitekt ja arendaja. Tegelesin põhiliselt kõnehalduse ning kõne voogedastuse komponentidega. Põhiosa tööst seisnes suure koodimahu ning kõrgete jõudlus- ja käideldavusnõuetega C++ rakenduste loomises ning nende opereerimise toetamises.}{Architect and developer of several Skype serverside components, including the ones responsible for call signalling and media transport. Majority of the work involved writing and maintaining large C++ codebases and supporting operational staff in maintaining applications built from those codebases.}\newline
@@ -219,7 +228,7 @@
 
 %------------------------------------------------
 
-\vspace{1em} % Extra space between major sections
+\vspace{0.8em} % Extra space between major sections
 
 
 %----------------------------------------------------------------------------------------
@@ -228,9 +237,26 @@
 
 \spacedlowsmallcaps{\ifet{Publikatsioonid}{Publications}}\vspace{1em}
 
-\NewEntry{\ifet{Detsember}{December} 2003}{\ifet{E-hääletamise turvaanalüüs}{Security Analysis of Proposed E-voting System}}
+%\newcommand{\NewEntry}[3]{\noindent\hangindent=2em\hangafter=0 \parbox{\datebox}{\small \textit{#1}}\hspace{1.5em} #2 #3 % Define a command for each new block - change spacing and font sizes here: #1 is the left margin, #2 is the italic date field and #3 is the position/employer/location field
+%\vspace{0.5em}} % Add some white space after each new entry
 
-\Description{\MarginText{\ifet{Vabariigi Valimiskomisjon}{Estonian National Electoral Committee}}E-hääletamise kontseptsiooni turve: analüüs ja meetmed, EH-02-01.\\ Authors: Arne Ansper, Ahto Buldas, Mart Oruaas, Jaan Priisalu, Anto Veldre, Jan Willemson, Kaur Virunurm}
+%\newcommand{\Description}[1]{\hangindent=2em\hangafter=0\noindent\raggedright\footnotesize{#1}\par\normalsize\vspace{1em}} % Define a command for descriptions of each entry - change spacing and font sizes here
+
+
+\newcommand{\NewPub}[2]{\hangindent=2em\hangafter=0\noindent\raggedright{#1}\par\normalsize\vspace{0.8em}\hangindent=2em\hangafter=0\footnotesize{#2}\par\normalsize\vspace{1em}} 
+
+\NewPub{\MarginText{\ifet{Riigi Infosüsteemi Amet}{Estonian Information System Authority}, 2021}\ifet{Krüptoalgoritmid ning nende tugi teekides ja infosüsteemides.}{Cryptographic algorithms, their lifecycle and software support.}}{\ifet{Autorid}{Authors}: Mart Oruaas, Aivo Kalu, Jaak Pruulmann-Vengerfeldt, Kristjan Krips, Jan Willemson}
+
+\NewPub{\MarginText{Keynote paper at Baltic DB\&IS 2020}Developing requirements for the new encryption mechanisms in the Estonian eID infrastructure.}{\ifet{Autorid}{Authors}: Mart Oruaas, Jan Willemson}
+
+\NewPub{\MarginText{Cybernetica AS, 2018}European Patent EP3529948B1 -- Composite Digital Signatures.}{\ifet{Autorid}{Authors}: Ahto Buldas, Aivo Kalu, Peeter Laud, Mart Oruaas}
+
+\NewPub{\MarginText{ESORICS 2017}Server-Supported RSA Signatures for Mobile Devices.}{\ifet{Autorid}{Authors}: Ahto Buldas, Aivo Kalu, Peeter Laud, Mart Oruaas}
+
+
+\NewPub{\MarginText{\ifet{Vabariigi Valimiskomisjon}{Estonian National Electoral Committee}, 2003}\ifet{E-hääletamise turvaanalüüs}{Security Analysis of a Proposed E-voting System}}{E-hääletamise kontseptsiooni turve: analüüs ja meetmed, EH-02-01.\\ \ifet{Autorid}{Authors}: Arne Ansper, Ahto Buldas, Mart Oruaas, Jaan Priisalu, Anto Veldre, Jan Willemson, Kaur Virunurm}
+
+
 
 %------------------------------------------------
 
@@ -240,17 +266,21 @@
 
 %------------------------------------------------
 
-\vspace{1em} % Extra space between major sections
+\vspace{0.3em} % Extra space between major sections
 
 
 
 %----------------------------------------------------------------------------------------
 %	OTHER INFORMATION
 %----------------------------------------------------------------------------------------
-
+%\pagebreak
 \spacedlowsmallcaps{\ifet{Muu informatsioon}{Other Information}}\vspace{1em}
 
-\Description{\MarginText{\ifet{Auhinnad}{Awards}}2015\ \ $\cdotp$\ \ \ifet{Aasta üllataja, Cybernetica AS}{Amazing Newcomer award of Cybernetica AS} }
+\Description{\MarginText{\ifet{Auhinnad}{Awards}}2018\ \ $\cdotp$\ \ \ifet{Aasta tegija, Cybernetica AS}{Employee of the Year of Cybernetica AS} }
+
+\vspace{-0.5em} % Negative vertical space to counteract the vertical space between every \Description command
+
+\Description{2015\ \ $\cdotp$\ \ \ifet{Aasta üllataja, Cybernetica AS}{Amazing Newcomer award of Cybernetica AS} }
 
 \vspace{-0.5em} % Negative vertical space to counteract the vertical space between every \Description command
 
@@ -282,13 +312,13 @@
 
 \vspace{-0.5em} % Negative vertical space to counteract the vertical space between every \Description command
 
-\Description{\parbox{\langbox}{\textsc{\ifet{Vene}{Russian}}}\ \ $\cdotp$\ \ \ \ifet{Põhitase}{Basic (everyday spoken use, simpler newspaper text)}}
+\Description{\parbox{\langbox}{\textsc{\ifet{Vene}{Russian}}}\ \ $\cdotp$\ \ \ \ifet{Põhitase}{Basic}}
 
 \vspace{1em} % Negative vertical space to counteract the vertical space between every \Description command
 
 %------------------------------------------------
 
-\Description{\MarginText{\ifet{Huvid}{Interests}}\ifet{Purjetamine}{Sailing}\ \ $\cdotp$\ \ \ifet{Jooksmine}{Running}\ \ $\cdotp$\ \ \ifet{Jalgrattasõit}{Mountain biking}}
+%\Description{\MarginText{\ifet{Huvid}{Interests}}\ifet{Purjetamine}{Sailing}\ \ $\cdotp$\ \ \ifet{Jooksmine}{Running}\ \ $\cdotp$\ \ \ifet{Jalgrattasõit}{Mountain biking}}
 
 %----------------------------------------------------------------------------------------
 
